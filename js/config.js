@@ -112,6 +112,12 @@ function cargas(tx) {
     tx.executeSql("UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = 'Opcoes'", [], null, function (tx, error) {
         alert('Ops... ' + error.message);
     });
+    tx.executeSql("UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = 'Respostas'", [], null, function (tx, error) {
+        alert('Ops... ' + error.message);
+    });
+    tx.executeSql("UPDATE SQLITE_SEQUENCE SET seq = 0 WHERE name = 'Resultado'", [], null, function (tx, error) {
+        alert('Ops... ' + error.message);
+    });
     
     //Cargas do banco
 
