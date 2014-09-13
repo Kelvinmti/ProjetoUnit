@@ -6,10 +6,31 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" media="screen" />
+    <script src="js/jquery.js"></script>
+    <script src="js/config.js"></script>
 </head>
 
 <body>
-    
+    <script>
+        function SalvarNome() {
+            var nome = $("#nome").val();
+            banco.transaction(function (tx) {
+                    tx.executeSql("Insert into Teste values(null,'" + nome + "')", [], function (tx, results) {
+                            window.location.href = "realizaTeste.html";
+                    },
+                    function (tx, error) {
+                        alert('Ops.. ' + error.message);
+                    });
+            });
+        }
+    </script>
+    <div>
+        <span>Digite seu nome:</span>
+        <br/>
+        <input id="nome" type="text" />
+        <br/>
+        <input type="button" value="Começar" onclick="SalvarNome()" />
+    </div>
 </body>
 
 </html>

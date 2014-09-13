@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" media="screen" />
+    <script src="js/jquery.js"></script>
+    <script src="js/config.js"></script>
+</head>
+
+<body>
+    <script>
+        function carregarPerguntas() {
+            banco.transaction(function (tx) {
+                tx.executeSql('SELECT * FROM Pergunta', [], function (tx, results) {
+                        var quant = results.rows.length;
+                        for (var i = 0; i < quant; i++) {
+                            var res = results.rows.item(i);
+                            var item = document.createElement('span');
+                            item.innerHTML = res.Numero + ". " + res.Texto;
+                            //item.setAttribute('class', '');
+                            $('#perguntas').append(item);
+
+                            var div = document.createElement('div');
+                            div.setAttribute('id', 'opcoesP' + res.Numero);
+                            //div.setAttribute('class', '');
+                            $('#perguntas').append(div);
+
+
+                            tx.executeSql('SELECT * FROM Opcoes where Numero_Pergunta = ' + res.Numero, [], function (tx, results2) {
+                                    var quant2 = results2.rows.length;
+                                    for (var j = 0; j < quant2; j++) {
+                                        var res2 = results2.rows.item(j);
+                                        var item2 = document.createElement('input');
+                                        item2.setAttribute('type', 'radio');
+                                        item2.setAttribute('value', res2.Id);
+                                        item2.setAttribute('id', res2.Id);
+                                        item2.setAttribute('name', 'pergunta' + res2.Numero_Pergunta);
+                                        //item2.setAttribute('class', '');
+                                        $('#opcoesP' + res2.Numero_Pergunta).append(item2);
+
+                                        var span = document.createElement('span');
+                                        span.innerHTML = res2.Texto;
+                                        //item.setAttribute('class', '');
+                                        $('#opcoesP' + res2.Numero_Pergunta).append(span);
+
+                                        $('#opcoesP' + res2.Numero_Pergunta).append(document.createElement('br'));
+                                    }
+                                },
+                                function (tx, error) {
+                                    alert('Ops.. ' + error.message);
+                                });
+
+                            $('#perguntas').append(document.createElement('br'));
+                            $('#perguntas').append(document.createElement('br'));
+                        }
+
+                        var botao = document.createElement('input');
+                        botao.setAttribute('type', 'button');
+                        botao.setAttribute('id', 'resultado');
+                        botao.setAttribute('value', 'Resultado');
+                        botao.setAttribute('onclick', "document.location.href='resultado.html'");
+                        //botao.setAttribute('class', '');
+                        $('#perguntas').append(botao);
+                    },
+                    function (tx, error) {
+                        alert('Ops.. ' + error.message);
+                    });
+            });
+        }
+        carregarPerguntas();
+    </script>
+    <div id="perguntas">
+    </div>
+</body>
+
+</html>

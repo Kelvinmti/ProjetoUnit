@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" media="screen" />
+    <script src="js/jquery.js"></script>
+    <script src="js/config.js"></script>
+</head>
+
+<body>
+    <script>
+        function carregarPerguntas() {
+            banco.transaction(function (tx) {
+                tx.executeSql('SELECT R.Id_curso AS Id_Curso, C.Nome AS Nome FROM Resultado AS R JOIN Curso AS C on C.Id = R.Id_Curso where R.id_curso = 1', [], function (tx, results) {
+                        var quant = results.rows.length;
+                        for (var i = 0; i < quant; i++) {
+                            var res = results.rows.item(i);
+                            var item = document.createElement('h2');
+                            item.innerHTML = "Parabéns, seu curso é:";
+                            //item.setAttribute('class', '');
+                            $('#resultado').append(item);
+
+                            var div = document.createElement('div');
+                            div.setAttribute('id', 'cruso');
+                            //div.setAttribute('class', '');
+                            $('#resultado').append(div);
+
+                            var span = document.createElement('span');
+                            span.innerHTML = res.Nome;
+                            //item.setAttribute('class', '');
+                            $('#resultado').append(span);
+                        }
+                    },
+                    function (tx, error) {
+                        alert('Ops.. ' + error.message);
+                    });
+            });
+        }
+        carregarPerguntas();
+    </script>
+    <div id="resultado">
+    </div>
+</body>
+
+</html>
