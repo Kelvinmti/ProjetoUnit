@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
     <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/config.js"></script>
 </head>
 
@@ -33,19 +35,21 @@
                                     var quant2 = results2.rows.length;
                                     for (var j = 0; j < quant2; j++) {
                                         var res2 = results2.rows.item(j);
+                                        var itemlabel = document.createElement('label');
+                                        itemlabel.setAttribute("class", "radio-inline");
                                         var item2 = document.createElement('input');
                                         item2.setAttribute('type', 'radio');
                                         item2.setAttribute('value', res2.Id);
                                         item2.setAttribute('id', res2.Id);
                                         item2.setAttribute('name', 'pergunta' + res2.Numero_Pergunta);
                                         //item2.setAttribute('class', '');
-                                        $('#opcoesP' + res2.Numero_Pergunta).append(item2);
-
+                                        itemlabel.appendChild(item2);
                                         var span = document.createElement('span');
                                         span.innerHTML = res2.Texto;
                                         //item.setAttribute('class', '');
-                                        $('#opcoesP' + res2.Numero_Pergunta).append(span);
+                                        itemlabel.appendChild(span);
 
+                                        $('#opcoesP' + res2.Numero_Pergunta).append(itemlabel);
                                         $('#opcoesP' + res2.Numero_Pergunta).append(document.createElement('br'));
                                     }
                                 },
@@ -57,13 +61,12 @@
                             $('#perguntas').append(document.createElement('br'));
                         }
 
-                        var botao = document.createElement('input');
-                        botao.setAttribute('type', 'button');
+                        var botao = document.createElement('button');
                         botao.setAttribute('id', 'resultado');
-                        botao.setAttribute('value', 'Resultado');
                         botao.setAttribute('onclick', "document.location.href='resultado.html'");
-                        //botao.setAttribute('class', '');
+                        botao.setAttribute('class', 'btn btn-primary');
                         $('#perguntas').append(botao);
+                        $("#resultado").html("Resultado");
                     },
                     function (tx, error) {
                         alert('Ops.. ' + error.message);
@@ -72,8 +75,32 @@
         }
         carregarPerguntas();
     </script>
-    <div id="perguntas">
+     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html" style="color:rgb(16, 93, 230);">Comece Unit</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li class="active"><a href="">Teste Vocacional</a></li>
+            <li><a href="">TwitVest</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
     </div>
+    <div class="panel panel-default">
+  <div class="panel-body">
+    <div id="perguntas" ><br><br><br>
+    </div>
+    </div></div>
 </body>
 
 </html>
