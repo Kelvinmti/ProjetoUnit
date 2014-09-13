@@ -20,17 +20,17 @@ banco.transaction(function (tx) {
     });
 
     //Curso
-    tx.executeSql("CREATE TABLE IF NOT EXISTS Curso (Id INT(11) PRIMARY KEY AUTOINCREMENT, Id_Area INT(11) NOT NULL, Nome VARCHAR(60) NOT NULL, Duracao SMALLINT(6) NOT NULL, Descricao TEXT NOT NULL, INDEX fk_Curso_Area1_idx (Id_Area ASC), CONSTRAINT fk_Curso_Area1 FOREIGN KEY (Id_Area)REFERENCES Area (Id) ON DELETE NO ACTION ON UPDATE NO ACTION)", [], null, function (tx, error) {
+    tx.executeSql("CREATE TABLE IF NOT EXISTS Curso (Id INT(11) PRIMARY KEY AUTOINCREMENT, Id_Area INT(11) NOT NULL, Nome VARCHAR(60) NOT NULL, Duracao SMALLINT(6) NOT NULL, Descricao TEXT NOT NULL, INDEX fk_Curso_Area1_idx (Id_Area ASC), CONSTRAINT fk_Curso_Area1 FOREIGN KEY (Id_Area)REFERENCES Area (Id))", [], null, function (tx, error) {
         alert('Ops... ' + error.message);
     });
 
     //Grade
-    tx.executeSql("CREATE TABLE IF NOT EXISTS Grade (Id INT(11) PRIMARY KEY AUTOINCREMENT, Id_Curso INT(11) NOT NULL, Nome_Materia VARCHAR(60) NOT NULL, INDEX fk_Grade_Curso1_idx (Id_Curso ASC), CONSTRAINT fk_Grade_Curso1 FOREIGN KEY (Id_Curso) REFERENCES Curso (Id) ON DELETE NO ACTION ON UPDATE NO ACTION)", [], null, function (tx, error) {
+    tx.executeSql("CREATE TABLE IF NOT EXISTS Grade (Id INT(11) PRIMARY KEY AUTOINCREMENT, Id_Curso INT(11) NOT NULL, Nome_Materia VARCHAR(60) NOT NULL, INDEX fk_Grade_Curso1_idx (Id_Curso ASC), CONSTRAINT fk_Grade_Curso1 FOREIGN KEY (Id_Curso) REFERENCES Curso (Id))", [], null, function (tx, error) {
         alert('Ops... ' + error.message);
     });
 
     //Prof_Curso
-    tx.executeSql("CREATE TABLE IF NOT EXISTS Prof_Curso (Id_Professor INT(11) PRIMARY KEY, Id_Curso INT(11) NOT NULL, INDEX fk_Prof_Curso_Curso1_idx (Id_Curso ASC), CONSTRAINT fk_Prof_Curso_Professor FOREIGN KEY (Id_Professor) REFERENCES Professor (Id) ON DELETE NO ACTION ON UPDATE NO ACTION, CONSTRAINT fk_Prof_Curso_Curso1 FOREIGN KEY (Id_Curso) REFERENCES Curso (Id) ON DELETE NO ACTION ON UPDATE NO ACTION)", [], null, function (tx, error) {
+    tx.executeSql("CREATE TABLE IF NOT EXISTS Prof_Curso (Id_Professor INT(11) PRIMARY KEY, Id_Curso INT(11) NOT NULL, INDEX fk_Prof_Curso_Curso1_idx (Id_Curso ASC), CONSTRAINT fk_Prof_Curso_Professor FOREIGN KEY (Id_Professor) REFERENCES Professor (Id), CONSTRAINT fk_Prof_Curso_Curso1 FOREIGN KEY (Id_Curso) REFERENCES Curso (Id))", [], null, function (tx, error) {
         alert('Ops... ' + error.message);
     });
 
