@@ -1,9 +1,23 @@
-<div data-role="page" id="telaListaCursos">
-   <div id= "listaCursos">
-      <a href=""><span class="nomeCurso"></span>Ciência da Computação</a>
-      <a href=""><span class="nomeCurso"></span>Engenharia da Computação</a>
-      <a href=""><span class="nomeCurso"></span>Sistemas de Informação</a>
-      <a href=""><span class="nomeCurso"></span>Sistemas Para Internet</a>
-      <a href=""><span class="nomeCurso"></span>Sistemas de Informação</a>
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" />
+   <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" media="screen" />
+</head>
+<body>
+   <div id="telaListaCursos">
+      <div id= "listaCursos">
+      </div>
    </div>
-</div>
+   <!-- SCRIPTS -->
+   <script src="js/jquery.js"></script>
+   <script src="js/bootstrap.js"></script>
+   <script src="js/config.js"></script>   
+   <script src="js/cursos.js"></script>
+   <script>
+      window.onload = carregarCursos;
+   </script>
+</body>
+</html>

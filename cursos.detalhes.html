@@ -1,21 +1,41 @@
-	<!-- LISTA DE CURSOS-->
-	<div data-role="page" id="telaDescricaoCursos">
-   	<p>
-   		<strong>Nome:</strong> <span id="nomeCurso">Sistemas de Informação</span>
-   	</p>
-   	<p>
-   		<strong>Área:</strong><span id="areaCurso"></span>
-   	</p>
-   	<p>
-   		<strong>Descrição:</strong>
-   		<div id="descricaoCurso">
-   			Descrição do curso
-   		</div>
-   	</p>
-   	<p>
-   		<strong>Corpo docente:</strong> <span id="nomeCurso">Sistemas de Informação</span>
-   	</p>
-   	<p>
-   		<strong>Duração:</strong> <span id="duracaoCurso"></span>
-   	</p>
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" />
+   <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" media="screen" />
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-12">
+	   	<p>
+	   		<strong>Nome:</strong> <span id="nomeCurso">Sistemas de Informação</span>
+	   	</p>
+	   	<p>
+	   		<strong>Área:</strong><span id="areaCurso"></span>
+	   	</p>
+	   	<p>
+	   		<strong>Descrição:</strong>
+	   		<div id="descricaoCurso">
+	   			Descrição do curso
+	   		</div>
+	   	</p>
+	   	<p>
+	   		<strong>Corpo docente:</strong> <span id="nomeCurso">Sistemas de Informação</span>
+	   	</p>
+	   	<p>
+	   		<strong>Duração:</strong> <span id="duracaoCurso"></span>
+	   	</p>
+   	</div>
 	</div>
+   <!-- SCRIPTS -->
+   <script src="js/jquery.js"></script>
+   <script src="js/bootstrap.js"></script>
+   <script src="js/config.js"></script>   
+   <script src="js/cursos.js"></script>
+   <script>
+      window.onload = carregarCursos;
+   </script>
+</body>
+</html>	
